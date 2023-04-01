@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		.duck{
+			background-image: url(duck.png);
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			top: 300px;
+			left: 500px;
+			background-size: 100% 100%;
+		}
+		.btn{
+			background: red;
+			width: 150px;
+			height: 50px;
+			position: absolute;
+			left: 800px;
+			top: 50px;
+
+		}
+		.oneS{
+			background-image: url(1s.png);
+			width: 200px;
+			height: 800px;
+			position: absolute;
+			background-size: 100% 100%;
+		}
+		.twoS{
+			background-image: url(2s.png);
+			width: 200px;
+			height: 800px;
+			left: 1712px;
+			position: absolute;
+			background-size: 100% 100%;
+		}
+		.waveone{
+			background-image: url(wave1.png);
+			width: 1900px;
+			height: 200px;
+			top: 500px;
+			position: absolute;
+			background-size: 100% 100%;
+		}
+		.wavetwo{
+			background-image: url(wave2.png);
+			width: 1900px;
+			height: 200px;
+			top: 320px;
+			position: absolute;
+			background-size: 100% 100%;
+		}
+		.wavethree{
+			background-image: url(wave3.png);
+			width: 1900px;
+			height: 200px;
+			top: 140px;
+			position: absolute;
+			background-size: 100% 100%;
+		}
+		.span{
+			height: 100px;
+			width: 100px;
+			position: absolute;
+			left: 1000px;
+			top: 50px;
+			font-size: 50px;
+		}
+		.scor{
+			height: 100px;
+			width: 100px;
+			position: absolute;
+			left: 1120px;
+			top: 55px;
+			font-size: 50px;
+		}
+		
+	</style>
+</head>
+<body class="body">
+	<div class="wavethree">
+		
+	</div>
+
+	<div class="wavetwo">
+		
+	</div>
+
+	<div class="waveone">
+		
+	</div>
+
+	<div class="oneS">
+		
+	</div>
+
+	<div class="twoS">
+		
+	</div>
+
+	<button class="btn">начать игру</button>
+	
+	<span class="span">очки:</span><span class="scor">0</span>
+
+	
+
+
+<script type="text/javascript">
+	let bd = document.querySelector(".body");
+	let btn = document.querySelector(".btn")
+	let scor = document.querySelector(".scor")
+	let score = 0;
+
+	
+
+
+	btn.onclick = function() {
+			let getRandom = function(arg) {
+			let random = Math.random() * arg
+			let round = Math.round(random)
+
+			return round
+		}
+
+		let array = [1800, 320, 480]
+		let array2 = [150, 1500]
+
+		let duckMaker = function() {
+				
+
+				let div = document.createElement("div");
+				bd.appendChild(div);
+
+				div.classList.add("duck")
+				
+				div.style.left = array2[getRandom(2)] + "px"
+				div.style.top = array[getRandom(2)] + "px"
+		
+				div.onclick = function() {
+				div.style.display = "none";
+				score = score + 10
+				scor.innerHTML = score
+			}
+		}
+		
+	let ducks;
+
+		let myint = setInterval(duckMaker, 500); //постоянный вызов функции
+
+		let endGame = function() {
+				
+				clearInterval(myint);
+				if(score>=50){
+					alert("win")
+					ducks = document.querySelectorAll(".duck")
+
+					for(let i = 0; i<ducks.length; i=i+1){
+						ducks[i].style.display = "none"
+					}
+				} else {
+					alert("lose")
+				}
+		}	
+
+		setTimeout(endGame, 10000)
+	}
+
+	
+</script>
+</body>
+</html>
